@@ -1,0 +1,15 @@
+from collections import Counter
+
+class Solution:
+    def winner(self, arr):
+        freq = Counter(arr)
+        
+        max_votes = max(freq.values())
+        
+        # filter candidates with max votes
+        candidates = [name for name, count in freq.items() if count == max_votes]
+        
+        # lexicographically smallest
+        winner = min(candidates)
+        
+        return [winner, str(max_votes)]
