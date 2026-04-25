@@ -1,0 +1,25 @@
+class Solution:
+  def minOperations(self, arr):
+    # code here
+    import heapq
+
+        total = sum(arr)
+        target = total / 2
+        
+        # max heap using negative values
+        max_heap = [-x for x in arr]
+        heapq.heapify(max_heap)
+        
+        operations = 0
+        current_sum = total
+        
+        while current_sum > target:
+            largest = -heapq.heappop(max_heap)
+            
+            half = largest / 2
+            current_sum -= half
+            
+            heapq.heappush(max_heap, -half)
+            operations += 1
+        
+        return operations
